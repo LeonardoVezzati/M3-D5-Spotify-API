@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>Album Page</title>
+
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/jpg" href="Img/1024px-Spotify_logo_without_text.svg.png"/>
+
+    <!--fonts from google-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--Bootstrap-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+    <!--CSS-->
+    <link rel="stylesheet" href="stylesheet.css" />
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      #Album-Page {
+        min-height: 100vh;
+        background-color: #121212;
+        padding: 30px 20px;
+      }
+      * {
+        font-family: "Gothic A1", sans-serif;
+      }
+      .dot {
+        font-family: sans-serif;
+      }
+      .Album-Title {
+        font-family: "Gothic A1";
+        font-weight: 700;
+        font-size: large;
+      }
+      .btn-play,
+      .btn-primary {
+        padding: 10px 60px;
+        background-color: #1db954;
+        color: white;
+        border-radius: 20px;
+        font-weight: 600;
+      }
+      .Icons{
+        background: transparent;
+        fill: white;
+      }
+      .Artists,
+      .Album-Year-Num-Songs,
+      .song-artists {
+        color: gray;
+      }
+    </style>
+  </head>
+  <body>
+
+      <!-- Sidebar -->
+  <div class="wrapperSideBar d-none d-sm-block d-md-block d-lg-block">
+    <nav id="sidebar">
+      <div class="sidebarHeadings">
+        <div class="sidebar-header">
+          <img src="Img/Spotifylogo.png" class="sidebarLogo" alt="Spotify Logo White Trasparent">
+        </div>
+        <ul class="list-unstyled components">
+          <li class="active">
+            <a href="index.html" class=""><i class="fas fa-home"></i>Home</a>
+          </li>
+          <li>
+            <a href="#"><i class="fas fa-search"></i>Search</a>
+          </li>
+          <li>
+            <a class="" data-toggle="collapse" href="#collapsePages" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <i class="fas fa-bars"></i>Pages
+            </a>
+          </li>
+          <div class="collapse" id="collapsePages">
+            <li>
+              <a href="artistpage.html"><i class="fas fa-music"></i>Artist Page</a>
+            </li>
+            <li>
+              <a href="albumpage.html"><i class="fas fa-compact-disc"></i>Albums Page</a>
+            </li>
+          </div>
+        </ul>
+      </div> 
+
+      <!-- loggedInMenu -->
+      <div id="loggedInBottomMenu" class="sidebarBottomInfo d-none text-left">
+        <p class="sidebarBottomInfoInstalltheApp"><i class="far fa-arrow-alt-circle-down"></i>Install the app</p>
+        <div class="sidebarUserImageContainer dropup">
+          <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="Img/Userimage.jpeg" class="sidebarUserImage" alt="">
+            <span class="sidebarUserText">Diego Banovaz</span>          
+          </button>
+          <div class="dropdown-menu dropdownSettings" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item textDropUp" href="#">Settings</a>
+            <a class="dropdown-item textDropUp" href="#" id="logOutButton">Logout</a>
+          </div>
+        </div>
+      </div>
+      
+
+      <!-- loggedOutMenu -->
+      <div id="loggedOutBottomMenu" class="">
+        <div class="sidebarBottomInfo d-flex flex-column">  
+          <!-- Trigger SignUp Modal -->
+          <button type="button" class="btn sidebarBottomInfoSignUp" data-toggle="modal" data-target="#signUpModal">Sign Up</button>
+          <!-- Trigger login Modal -->
+          <button type="button" class="btn sidebarBottomInfoLogin" data-toggle="modal" data-target="#logInModal">Login</button>
+          <div>
+            <ul>
+              <li class="sidebarBottomInfoliFirst">Cookie</li>
+              <li class="sidebarBottomInfoliMiddle">Privacy</li>
+              <li class="sidebarBottomInfoliEnd">Policy</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- End Sidebar -->
+
+  <!-- SignUp Modal -->
+  <div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <img src="Img/Spotify_Logo_RGB_Black.png" class="sidebarLogo">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid px-3">
+            <div class="">
+              <div class="row">
+                <div class="col-12 text-center">
+                  <p class="formSignUpMainP">To continue, sign up for Spotify.</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12" >
+                  <a class="btn btn-block signUpWithFacebook"><i class="fab fa-facebook"></i>CONTINUE WITH FACEBOOK</a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <a class="btn btn-block text-white signUpWithApple"><i class="fab fa-apple"></i>CONTINUE WITH APPLE</a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <hr class="hr-text" data-content="OR">
+                </div>
+              </div>
+              <form>
+                <div class="row">
+                  <div class="col-12">
+                    <label for="login-username">Email address</label>
+                    <input type="text" class="form-control"  id="signUpEmail" placeholder="Email address or username" required>
+                    <!-- ngIf: accounts.username.$dirty && accounts.username.$invalid -->
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-12">
+                    <label for="login-password">Password</label>
+                    <input type="password" class="form-control" id="signUpPassword" placeholder="Password" required>
+                    <!-- ngIf: accounts.password.$dirty && accounts.password.$invalid -->
+                  </div>
+                </div>
+                <div class="row text-center password-reset">
+                </div>
+                <div class="row row-submit mt-3">
+                  <div class="col-12 col-sm-6 d-flex flex-column justify-content-center">
+                  <div>
+                    <label class="checkbox mb-3 mb-md-0"><span>Remember me</span>
+                      <input type="checkbox" id="login-remember" checked="checked">
+                      <span class="checkmark"></span>
+                    </label>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <button class="btn btn-block spotifyColorButton" id="signUpButton" data-dismiss="modal">SIGN UP</button>
+                  </div>
+                </div>  
+              </form>
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-12">
+                      <hr class="hr-text" data-content="">
+                    </div>
+                  </div>
+                  <div class="row justify-content-center mt-0">
+                    <p class="formSignUpMainP mt-3">Do you already have an account?</p>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <a id="sign-up-link" class="btn btn-block btn-default spotifySecondaryButton">LOG IN TO SPOTIFY</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="divider">
+                  </div>
+                  <p class="tos text-center disclosureParagraph">If you click "Log in with Facebook" and you are not a Spotify user, you will be registered and you agree to Spotify's <span class="disclosureParagraphGreen">Terms & Conditions</span>  and <span class="disclosureParagraphGreen"> Privacy Policy</span> </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Sign Up Modal -->
+
+  <!-- Login Modal -->
+  <div class="modal fade" id="logInModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <img src="Img/Spotify_Logo_RGB_Black.png" class="sidebarLogo">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid px-3">
+            <div class="">
+              <div class="row">
+                <div class="col-12 text-center">
+                  <p class="formSignUpMainP">To continue, login to Spotify.</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12" >
+                  <a class="btn btn-block signUpWithFacebook"><i class="fab fa-facebook"></i>CONTINUE WITH FACEBOOK</a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <a class="btn btn-block text-white signUpWithApple"><i class="fab fa-apple"></i>CONTINUE WITH APPLE</a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <hr class="hr-text" data-content="OR">
+                </div>
+              </div>
+              <form>
+                <div class="row">
+                  <div class="col-12">
+                    <label for="login-username">Email address</label>
+                    <input type="text" class="form-control"  id="loginEmail" placeholder="Email address or username" required>
+                    <!-- ngIf: accounts.username.$dirty && accounts.username.$invalid -->
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-12">
+                    <label for="login-password">Password</label>
+                    <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                    <!-- ngIf: accounts.password.$dirty && accounts.password.$invalid -->
+                  </div>
+                </div>
+                <div class="row text-center password-reset">
+                </div>
+                <div class="row row-submit mt-3">
+                  <div class="col-12 col-sm-6 d-flex flex-column justify-content-center">
+                    <div class="control-group mb-3 mb-md-0">
+                      <label class="control control-checkbox" style="color:#b6b4b4;">
+                         Remember me
+                          <input type="checkbox" checked="checked" />
+                          <div class="control_indicator"></div>
+                      </label>
+                      </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <button class="btn btn-block spotifyColorButton" id="loginButton" data-dismiss="modal">LOG IN</button>
+                  </div>
+                  <div class="col-12 text-center text-green mt-3" >
+                    <p><a class="disclosureParagraphGreen" id="reset-password-link">Forgot your password?</a></p>
+                  </div>
+                </div>  
+              </form>
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-12">
+                      <hr class="hr-text" data-content="">
+                    </div>
+                  </div>
+                  <div class="row justify-content-center mt-0">
+                    <p class="formSignUpMainP mt-3">Don't have an account?</p>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <a id="sign-up-link" class="btn btn-block btn-default spotifySecondaryButton">SIGN UP FOR SPOTIFY</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="divider">
+                  </div>
+                  <p class="tos text-center disclosureParagraph">If you click "Log in with Facebook" and you are not a Spotify user, you will be registered and you agree to Spotify's <span class="disclosureParagraphGreen">Terms & Conditions</span>  and <span class="disclosureParagraphGreen"> Privacy Policy</span> </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Login Modal -->
+
+  <!-- Downbar Menu -->
+  <div class="bottomMenuWrapper d-none d-sm-flex d-md-flex d-lg-flex">
+    <div class="bottomMenuWrapperLeft">
+      <div class="d-flex">
+        <div class="position-relative imageDimensionContainer">
+          <img src="Img/Highway 61.PNG" class="bottomMenuWrapperLeftAlbumImage" alt="">
+        </div>
+        <div class="bottomMenuWrapperLeftAlbumText">
+          <h3>Song For My Father</h3>
+          <p>Horace Silver</p>
+        </div>
+        <div class="bottomMenuWrapperLeftIcons">
+          <ul>
+            <li><i class="far fa-heart"></i></li>
+            <li><i class="fas fa-laptop"></i></li>  
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="bottomMenuWrapperCenter">
+      <div>
+        <ul class="d-flex align-items-center justify-content-center">
+          <li class="bottomMenuWrapperCenterSecondaryIcon"><i class="fas fa-random"></i></li>
+          <li class="bottomMenuWrapperCenterSecondaryIcon"><i class="fas fa-step-backward"></i></li>
+          <li class="bottomMenuWrapperCenterPlayIcon"><i class="far fa-play-circle"></i></li>
+          <li class="bottomMenuWrapperCenterSecondaryIcon"><i class="fas fa-step-forward"></i></li>
+          <li class="bottomMenuWrapperCenterSecondaryIcon"><i class="fas fa-redo"></i></li>
+        </ul>
+      </div>
+      <div class="progress progressSong">
+        <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    </div>
+    <div class="bottomMenuWrapperRight d-flex align-items-center">
+      <div>
+        <ul>
+          <li><i class="fas fa-bars"></i></li>
+          <li><i class="fas fa-laptop-code"></i></li>
+          <li class="finalListLi">
+            <div class="d-flex align-items-center">
+              <i class="fas fa-volume-up"></i>
+              <!--THIS INPUT THE CONTAINS VOLUME SLIDER-->
+              <input type="range" class="d-lg-block styled-slider slider-progress p-3"/>
+
+            </div>
+          </li>
+        </ul>
+        <i class="fas fa-ellipsis-h bottomMenuWrapperRightBars"></i>
+      </div>
+    </div>
+  </div>
+  <!-- End Downbar Menu -->
+
+  <!-- Mobile Top Menu -->
+  <div class="d-flex justify-content-between mobileTopMenu d-block d-sm-none d-md-none d-lg-none d-xl-none">
+    <div class="mobileTopMenuLeft">
+      <i class="fas fa-chevron-left"></i>
+    </div>
+    <div class="mobileTopMenuRight">
+      <ul class="mb-0">
+        <li><i class="far fa-heart"></i></li>
+        <li><i class="fas fa-ellipsis-h"></i></li>
+      </ul>
+    </div>
+  </div>
+  <!-- End Mobile Top Menu -->
+
+  
+  <!-- Mobile Bottom Menu -->
+  <div class="d-flex justify-content-between mobileBottomMenu d-block d-sm-none d-md-none d-lg-none d-xl-none">
+    <div class="BottomMenuSection1 text-center d-flex flex-column align-items-center">
+        <i class="fas fa-home"></i>
+        <p>Home</p>
+    </div>
+    <div class="BottomMenuSection2 text-center d-flex flex-column align-items-center">
+        <i class="fas fa-search"></i>
+        <p>Search</p>
+    </div>
+    <div class="BottomMenuSection3 text-center d-flex flex-column align-items-center">
+        <i class="fas fa-bars"></i>
+        <p>Your Library</p>
+    </div>
+    <div class="BottomMenuSection4 text-center d-flex flex-column align-items-center">
+        <i class="fab fa-spotify"></i>
+        <p>Premium</p>
+    </div>
+  </div>
+  <!-- End Mobile Bottom Menu -->
+
+  <!-- Content Section -->
+  <div class="contentSection">
+    <div class="container-fluid" id="Album-Page">
+      <div class="row">
+        <div class="col-sm-12 col-md-6 Album text-center">
+          <div class="Album-Image mt-5 mt-sm-4 mt-md-0">
+            <img
+              class="img-fluid"
+              src="https://i.scdn.co/image/ab67616d00001e02d92f69c3b3adb389afdde64f"
+              alt="Queen II (Deluxe Edition 2011 Remaster)"
+            />
+          </div>
+          <div class="Album-Title text-white text-center mt-2">
+            Queen II (Deluxe Edition 2011 Remaster)
+          </div>
+          <div class="Artists text-center">Queen</div>
+          <div class="play-btn-place text-center">
+            <button type="button" class="btn btn-play">PLAY</button>
+          </div>
+          <div class="Album-Year-Num-Songs mt-3">
+            <span class="Album-Year">1974</span>
+            <span class="dot">•</span>
+            <span class="Album-Num-Songs">16 SONGS</span>
+          </div>
+          <div class="Icons text-white mb-4">
+            <span class="Save-to-Your-Library-Icon text-white text-center">
+              <button
+                type="button"
+                role="switch"
+                aria-checked="false"
+                aria-label="Save to Your Library"
+                class="btn"
+                title="Save to Your Library"
+              >
+                <svg
+                  role="img"
+                  height="32"
+                  width="32"
+                  viewBox="0 0 32 32"
+                  class=""
+                >
+                  <path
+                    d="M27.672 5.573a7.904 7.904 0 00-10.697-.489c-.004.003-.425.35-.975.35-.564 0-.965-.341-.979-.354a7.904 7.904 0 00-10.693.493A7.896 7.896 0 002 11.192c0 2.123.827 4.118 2.301 5.59l9.266 10.848a3.196 3.196 0 004.866 0l9.239-10.819A7.892 7.892 0 0030 11.192a7.896 7.896 0 00-2.328-5.619zm-.734 10.56l-9.266 10.848c-.837.979-2.508.979-3.346 0L5.035 16.104A6.9 6.9 0 013 11.192 6.9 6.9 0 015.035 6.28a6.935 6.935 0 014.913-2.048 6.89 6.89 0 014.419 1.605A2.58 2.58 0 0016 6.434c.914 0 1.555-.53 1.619-.585a6.908 6.908 0 019.346.431C28.277 7.593 29 9.337 29 11.192s-.723 3.6-2.062 4.941z"
+                  ></path>
+                </svg>
+              </button>
+            </span>
+            <span class="Three-Dot-Icon text-white text-center">
+              <button
+                type="button"
+                aria-haspopup="menu"
+                aria-label="More"
+                class="btn"
+                title="More"
+              >
+                <svg
+                  role="img"
+                  height="32"
+                  width="32"
+                  viewBox="0 0 32 32"
+                  class=""
+                >
+                  <path
+                    d="M5.998 13.999A2 2 0 105.999 18 2 2 0 005.998 14zm10.001 0A2 2 0 1016 18 2 2 0 0016 14zm10.001 0A2 2 0 1026.001 18 2 2 0 0026 14z"
+                  ></path>
+                </svg>
+              </button>
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <div class="song col-12 text-white">
+            <div class="row">
+              <div class="song-icon col-1">
+                <ion-icon name="musical-note-outline"></ion-icon>
+              </div>
+              <div class="song-title col-10">
+                Procession - Remastered 2011
+                <div class="song-artists">Queen</div>
+              </div>
+              <div class="song-length col-1">1:13</div>
+            </div>
+            <div class="row">
+              <div class="song-icon col-1">
+                <ion-icon name="musical-note-outline"></ion-icon>
+              </div>
+              <div class="song-title col-10">
+                Father To Son - Remastered 2011
+                <div class="song-artists">Queen</div>
+              </div>
+              <div class="song-length col-1">6:13</div>
+            </div>
+            <div class="row">
+              <div class="song-icon col-1">
+                <ion-icon name="musical-note-outline"></ion-icon>
+              </div>
+              <div class="song-title col-10">
+                White Queen (As It Began) - Remastered 2011 - Remastered 2011
+                <div class="song-artists">Queen</div>
+              </div>
+              <div class="song-length col-1">4:33</div>
+            </div>
+            <div class="row">
+              <div class="song-icon col-1">
+                <ion-icon name="musical-note-outline"></ion-icon>
+              </div>
+              <div class="song-title col-10">
+                Some Day One Day - Remastered 2011
+                <div class="song-artists">Queen</div>
+              </div>
+              <div class="song-length col-1">4:22</div>
+            </div>
+            <div class="row">
+              <div class="song-icon col-1">
+                <ion-icon name="musical-note-outline"></ion-icon>
+              </div>
+              <div class="song-title col-10">
+                The Loser In The End - Remastered 2011
+                <div class="song-artists">Queen</div>
+              </div>
+              <div class="song-length col-1">4:01</div>
+            </div>
+            <div class="row">
+              <div class="song-icon col-1">
+                <ion-icon name="musical-note-outline"></ion-icon>
+              </div>
+              <div class="song-title col-10">
+                Ogre Battle - Remastered 2011
+                <div class="song-artists">Queen</div>
+              </div>
+              <div class="song-length col-1">4:08</div>
+            </div>
+            <div class="row">
+              <div class="song-icon col-1">
+                <ion-icon name="musical-note-outline"></ion-icon>
+              </div>
+              <div class="song-title col-10">
+                The Fairy Feller's Master-Stroke - Remastered 2011
+                <div class="song-artists">Queen</div>
+              </div>
+              <div class="song-length col-1">2:40</div>
+            </div>
+            <div class="row">
+              <div class="song-icon col-1">
+                <ion-icon name="musical-note-outline"></ion-icon>
+              </div>
+              <div class="song-title col-10">
+                Nevermore - Remastered 2011
+                <div class="song-artists">Queen</div>
+              </div>
+              <div class="song-length col-1">1:18</div>
+            </div>
+            <div class="row">
+              <div class="song-icon col-1">
+                <ion-icon name="musical-note-outline"></ion-icon>
+              </div>
+              <div class="song-title col-10">
+                The March Of The Black Queen - Remastered 2011
+                <div class="song-artists">Queen</div>
+              </div>
+              <div class="song-length col-1">6:32</div>
+            </div>
+            <div class="row">
+              <div class="song-icon col-1">
+                <ion-icon name="musical-note-outline"></ion-icon>
+              </div>
+              <div class="song-title col-10">
+                Funny How Love Is - Remastered 2011
+                <div class="song-artists">Queen</div>
+              </div>
+              <div class="song-length col-1">2:49</div>
+            </div>
+            <div class="row">
+              <div class="song-icon col-1">
+                <ion-icon name="musical-note-outline"></ion-icon>
+              </div>
+              <div class="song-title col-10">
+                Seven Seas Of Rhye - Remastered 2011
+                <div class="song-artists">Queen</div>
+              </div>
+              <div class="song-length col-1">2:48</div>
+            </div>
+            <div class="row">
+              <div class="song-icon col-1">
+                <ion-icon name="musical-note-outline"></ion-icon>
+              </div>
+              <div class="song-title col-10">
+                See What A Fool I've Been - Live BBC Session, London / July 1973
+                / 2011 Remix
+                <div class="song-artists">Queen</div>
+              </div>
+              <div class="song-length col-1">4:22</div>
+            </div>
+            <div class="row">
+              <div class="song-icon col-1">
+                <ion-icon name="musical-note-outline"></ion-icon>
+              </div>
+              <div class="song-title col-10">
+                White Queen (As It Began) - Live At Hammersmith Odeon, London /
+                December 1975
+                <div class="song-artists">Queen</div>
+              </div>
+              <div class="song-length col-1">5:32</div>
+            </div>
+            <div class="row">
+              <div class="song-icon col-1">
+                <ion-icon name="musical-note-outline"></ion-icon>
+              </div>
+              <div class="song-title col-10">
+                Seven Seas Of Rhye - Instrumental Mix 2011
+                <div class="song-artists">Queen</div>
+              </div>
+              <div class="song-length col-1">3:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Content Section -->
+
+    <!--Local Storage-->
+    <script>
+      const signUpEmail = document.getElementById('signUpEmail')
+      const signUpPassword = document.getElementById('signUpPassword')
+      const signUpButton = document.getElementById('signUpButton')
+      const loginEmail = document.getElementById('loginEmail')
+      const loginPassword = document.getElementById('loginPassword')
+      const loginButton = document.getElementById('loginButton')
+      const logOutButton = document.getElementById('logOutButton')
+
+      const loggedInBottomMenu = document.getElementById('loggedInBottomMenu')
+      const loggedOutBottomMenu = document.getElementById('loggedOutBottomMenu')
+
+      
+      window.onload = function () {
+        let loggedIn = localStorage.getItem("LOGGED_IN");
+        displaySidebarFooter();
+      }
+
+      function logInUser() {
+        localStorage.setItem("LOGGED_IN", true);
+        displaySidebarFooter();
+      }
+
+      function logOutUser() {
+        localStorage.clear();
+        location.reload();
+      }
+
+      function displaySidebarFooter() {
+        let loggedIn = localStorage.getItem("LOGGED_IN");
+        if (loggedIn){
+          loggedInBottomMenu.classList.remove('d-none');
+          loggedOutBottomMenu.classList.add('d-none');
+        } else {
+          loggedOutBottomMenu.classList.remove('d-none');
+          loggedInBottomMenu.classList.add('d-none');
+        }
+      }
+
+      signUpButton.onclick = logInUser
+      logOutButton.onclick = logOutUser
+
+      for (let e of document.querySelectorAll('input[type="range"].slider-progress')) {
+          e.style.setProperty('--value', e.value);
+          e.style.setProperty('--min', e.min == '' ? '0' : e.min);
+          e.style.setProperty('--max', e.max == '' ? '100' : e.max);
+          e.addEventListener('input', () => e.style.setProperty('--value', e.value));
+          console.log( e.addEventListener('input', () => e.style.setProperty('--value', e.value)))
+      }
+    </script>
+    <!--End Local Storage-->
+
+    <!--Bootstrap-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+  
+    <!--Fontawesome-->
+    <script src="https://kit.fontawesome.com/cf8ccbb757.js" crossorigin="anonymous"></script>
+
+
+
+
+    
+    <!--Bootstrap-->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--Fontawesome-->
+    <script
+      src="https://kit.fontawesome.com/cf8ccbb757.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--ionicons-->
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  </body>
+</html>

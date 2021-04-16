@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>Artist Page</title>
+
+    <!--Favicon-->
+    <link
+      rel="shortcut icon"
+      type="image/jpg"
+      href="Img/1024px-Spotify_logo_without_text.svg.png"
+    />
+
+    <!--fonts from google-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <!--Bootstrap-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+    <!--CSS-->
+    <link rel="stylesheet" href="stylesheet.css" />
+
+    <style>
+      @font-face {
+        font-family: lineto-circular-black;
+        src: url(assets/fonts/lineto-circular-black.ttf);
+      }
+      @font-face {
+        font-family: lineto-circular-pro-book;
+        src: url(assets/fonts/lineto-circular-pro-book.ttf);
+      }
+      .album,
+      .contentSection {
+        background-color: #121212 !important;
+      }
+
+      .container-img-artist {
+        position: relative;
+        width: calc(100vw - 200px);
+        height: 40vh;
+        margin: 0;
+        position: relative;
+      }
+
+      .container-img-artist::after {
+        content: "";
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 40vh;
+        width: calc(100vw - 200px);
+        background: linear-gradient(
+          0deg,
+          rgb(18, 18, 18, 1) 0%,
+          rgb(18, 18, 18, 0.9) 5%,
+          rgba(18, 18, 18, 0.97) 10%,
+          rgba(18, 18, 18, 0) 100%
+        );
+        z-index: 1;
+      }
+      .img-artist {
+        position: absolute;
+        width: calc(100vw - 200px);
+        height: 40vh;
+        z-index: 1;
+      }
+
+      .text-artist-listener {
+        font-size: 10px;
+        position: absolute;
+        left: 50%;
+        top: 25%;
+        transform: translate(-50%, -50%);
+        font-family: lineto-circular-pro-book;
+        z-index: 2;
+      }
+      .text-artist-title {
+        background-color: transparent;
+        position: absolute;
+        left: 50%;
+        top: 40%;
+        transform: translate(-50%, -50%);
+        font-weight: 900;
+        font-family: lineto-circular-pro-book;
+        z-index: 2;
+      }
+      .btn-place {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        z-index: 2;
+        left: 50%;
+        top: 65%;
+        transform: translate(-50%, -50%);
+      }
+      .btnArtistPage {
+        font-size: 8px;
+        padding: 0% 40%;
+        margin: 0% 5%;
+        color: white;
+        border: 1px solid black;
+        border-radius: 20px;
+        font-weight: normal;
+      }
+      .btn-play {
+        background-color: #1db954;
+      }
+      .btn-play:hover {
+        color: black;
+        background-color: white;
+      }
+      .btn-follow {
+        border: 1px solid white;
+        background-color: rgb(18, 18, 18, 0.5);
+      }
+      .btn-follow:hover {
+        color: rgb(18, 18, 18, 0.5);
+        background-color: white;
+      }
+      .dots {
+        background-color: transparent;
+        border: 0;
+        padding: 0;
+        fill: white;
+        transform: scale(0.65);
+      }
+      .dots:hover {
+        color: black;
+        background-color: white;
+      }
+      .Page-navigation {
+        position: relative;
+        top: -30px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 4;
+        background-color: rgb(18, 18, 18);
+      }
+
+      .page-link {
+        border: none;
+        color: white;
+        background-color: transparent;
+        font-size: 8px;
+      }
+      .page-item .page-link {
+        color: gray;
+        background-color: transparent;
+      }
+      .page-item.active .page-link {
+        color: white;
+        background-color: transparent;
+      }
+      .page-item.active .link-borderBottom {
+        border-bottom: 2px solid green;
+        position: absolute;
+        right: 35%;
+        bottom: 3px;
+        left: 35%;
+      }
+      .card,
+      .card-body {
+        color: white;
+        border: none;
+        background: transparent !important;
+        font-weight: bold;
+      }
+      .albums-heading {
+        background-color: #121212;
+        margin: 0;
+        color: white;
+        font-weight: bold;
+
+      }
+      .card-text{
+        font-family: lineto-circular-pro-book;
+        font-size:10px ;
+        margin: 0;
+        padding: 0;
+      }
+      .card-artist {
+        margin-top: 5%;
+        padding-top:0 ;
+        color: gray;
+        font-size:12px ;
+        font-family: lineto-circular-pro-book;
+        font-weight: normal;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="wrapperSideBar d-none d-sm-block d-md-block d-lg-block">
+      <nav id="sidebar">
+        <div class="sidebarHeadings">
+          <div class="sidebar-header">
+            <img
+              src="Img/Spotifylogo.png"
+              class="sidebarLogo"
+              alt="Spotify Logo White Trasparent"
+            />
+          </div>
+          <ul class="list-unstyled components">
+            <li class="active">
+              <a href="index.html" class=""
+                ><i class="fas fa-home"></i>Home</a
+              >
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-search"></i>Search</a>
+            </li>
+            <li>
+              <a class="" data-toggle="collapse" href="#collapsePages" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fas fa-bars"></i>Pages
+              </a>
+            </li>
+            <div class="collapse" id="collapsePages">
+              <li>
+                <a href="artistpage.html"><i class="fas fa-music"></i>Artist Page</a>
+              </li>
+              <li>
+                <a href="albumpage.html"><i class="fas fa-compact-disc"></i>Albums Page</a>
+              </li>
+            </div>
+          </ul>
+        </div>
+
+        <!-- loggedInMenu -->
+        <div id="loggedInBottomMenu" class="sidebarBottomInfo d-none text-left">
+          <p class="sidebarBottomInfoInstalltheApp">
+            <i class="far fa-arrow-alt-circle-down"></i>Install the app
+          </p>
+          <div class="sidebarUserImageContainer dropup">
+            <button
+              class="btn dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <img src="Img/Userimage.jpeg" class="sidebarUserImage" alt="" />
+              <span class="sidebarUserText">Diego Banovaz</span>
+            </button>
+            <div
+              class="dropdown-menu dropdownSettings"
+              aria-labelledby="dropdownMenuButton"
+            >
+              <a class="dropdown-item textDropUp" href="#">Settings</a>
+              <a class="dropdown-item textDropUp" href="#" id="logOutButton"
+                >Logout</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- loggedOutMenu -->
+        <div id="loggedOutBottomMenu" class="">
+          <div class="sidebarBottomInfo d-flex flex-column">
+            <!-- Trigger SignUp Modal -->
+            <button
+              type="button"
+              class="btn sidebarBottomInfoSignUp"
+              data-toggle="modal"
+              data-target="#signUpModal"
+            >
+              Sign Up
+            </button>
+            <!-- Trigger login Modal -->
+            <button
+              type="button"
+              class="btn sidebarBottomInfoLogin"
+              data-toggle="modal"
+              data-target="#logInModal"
+            >
+              Login
+            </button>
+            <div>
+              <ul>
+                <li class="sidebarBottomInfoliFirst">Cookie</li>
+                <li class="sidebarBottomInfoliMiddle">Privacy</li>
+                <li class="sidebarBottomInfoliEnd">Policy</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- End Sidebar -->
+
+    <!-- SignUp Modal -->
+    <div
+      class="modal fade"
+      id="signUpModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <img src="Img/Spotify_Logo_RGB_Black.png" class="sidebarLogo" />
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container-fluid px-3">
+              <div class="">
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <p class="formSignUpMainP">
+                      To continue, sign up for Spotify.
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <a class="btn btn-block signUpWithFacebook">
+                      <i class="fab fa-facebook"></i>CONTINUE WITH FACEBOOK</a
+                    >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <a class="btn btn-block text-white signUpWithApple"
+                      ><i class="fab fa-apple"></i>CONTINUE WITH APPLE</a
+                    >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <hr class="hr-text" data-content="OR" />
+                  </div>
+                </div>
+                <form>
+                  <div class="row">
+                    <div class="col-12">
+                      <label for="login-username">Email address</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="signUpEmail"
+                        placeholder="Email address or username"
+                        required
+                      />
+                      <!-- ngIf: accounts.username.$dirty && accounts.username.$invalid -->
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-12">
+                      <label for="login-password">Password</label>
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="signUpPassword"
+                        placeholder="Password"
+                        required
+                      />
+                      <!-- ngIf: accounts.password.$dirty && accounts.password.$invalid -->
+                    </div>
+                  </div>
+                  <div class="row text-center password-reset"></div>
+                  <div class="row row-submit mt-3">
+                    <div
+                      class="col-12 col-sm-6 d-flex flex-column justify-content-center"
+                    >
+                      <div>
+                        <label class="checkbox mb-3 mb-md-0"
+                          ><span>Remember me</span>
+                          <input
+                            type="checkbox"
+                            id="login-remember"
+                            checked="checked"
+                          />
+                          <span class="checkmark"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <button
+                        class="btn btn-block spotifyColorButton"
+                        id="signUpButton"
+                        data-dismiss="modal"
+                      >
+                        SIGN UP
+                      </button>
+                    </div>
+                  </div>
+                </form>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="row">
+                      <div class="col-12">
+                        <hr class="hr-text" data-content="" />
+                      </div>
+                    </div>
+                    <div class="row justify-content-center mt-0">
+                      <p class="formSignUpMainP mt-3">
+                        Do you already have an account?
+                      </p>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <a
+                          id="sign-up-link"
+                          class="btn btn-block btn-default spotifySecondaryButton"
+                          >LOG IN TO SPOTIFY</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="divider"></div>
+                    <p class="tos text-center disclosureParagraph">
+                      If you click "Log in with Facebook" and you are not a
+                      Spotify user, you will be registered and you agree to
+                      Spotify's
+                      <span class="disclosureParagraphGreen"
+                        >Terms & Conditions</span
+                      >
+                      and
+                      <span class="disclosureParagraphGreen">
+                        Privacy Policy</span
+                      >
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Sign Up Modal -->
+
+    <!-- Login Modal -->
+    <div
+      class="modal fade"
+      id="logInModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <img src="Img/Spotify_Logo_RGB_Black.png" class="sidebarLogo" />
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container-fluid px-3">
+              <div class="">
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <p class="formSignUpMainP">
+                      To continue, login to Spotify.
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <a class="btn btn-block signUpWithFacebook"
+                      ><i class="fab fa-facebook"></i>CONTINUE WITH FACEBOOK</a
+                    >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <a class="btn btn-block text-white signUpWithApple"
+                      ><i class="fab fa-apple"></i>CONTINUE WITH APPLE</a
+                    >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <hr class="hr-text" data-content="OR" />
+                  </div>
+                </div>
+                <form>
+                  <div class="row">
+                    <div class="col-12">
+                      <label for="login-username">Email address</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="loginEmail"
+                        placeholder="Email address or username"
+                        required
+                      />
+                      <!-- ngIf: accounts.username.$dirty && accounts.username.$invalid -->
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-12">
+                      <label for="login-password">Password</label>
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="loginPassword"
+                        placeholder="Password"
+                        required
+                      />
+                      <!-- ngIf: accounts.password.$dirty && accounts.password.$invalid -->
+                    </div>
+                  </div>
+                  <div class="row text-center password-reset"></div>
+                  <div class="row row-submit mt-3">
+                    <div
+                      class="col-12 col-sm-6 d-flex flex-column justify-content-center"
+                      >
+                    <div class="control-group mb-3 mb-md-0">
+                      <label class="control control-checkbox" style="color:#b6b4b4;">
+                         Remember me
+                          <input type="checkbox" checked="checked" />
+                          <div class="control_indicator"></div>
+                      </label>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <button
+                        class="btn btn-block spotifyColorButton"
+                        id="loginButton"
+                        data-dismiss="modal"
+                      >
+                        LOG IN
+                      </button>
+                    </div>
+                    <div class="col-12 text-center text-green mt-3">
+                      <p>
+                        <a
+                          class="disclosureParagraphGreen"
+                          id="reset-password-link"
+                          >Forgot your password?</a
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </form>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="row">
+                      <div class="col-12">
+                        <hr class="hr-text" data-content="" />
+                      </div>
+                    </div>
+                    <div class="row justify-content-center mt-0">
+                      <p class="formSignUpMainP mt-3">Don't have an account?</p>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <a
+                          id="sign-up-link"
+                          class="btn btn-block btn-default spotifySecondaryButton"
+                          >SIGN UP FOR SPOTIFY</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="divider"></div>
+                    <p class="tos text-center disclosureParagraph">
+                      If you click "Log in with Facebook" and you are not a
+                      Spotify user, you will be registered and you agree to
+                      Spotify's
+                      <span class="disclosureParagraphGreen"
+                        >Terms & Conditions</span
+                      >
+                      and
+                      <span class="disclosureParagraphGreen">
+                        Privacy Policy</span
+                      >
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Login Modal -->
+
+    <!-- Downbar Menu -->
+    <div class="bottomMenuWrapper d-none d-sm-flex d-md-flex d-lg-flex">
+      <div class="bottomMenuWrapperLeft">
+        <div class="d-flex">
+          <div class="position-relative imageDimensionContainer">
+            <img src="Img/Highway 61.PNG" class="bottomMenuWrapperLeftAlbumImage" alt="">
+          </div>
+          <div class="bottomMenuWrapperLeftAlbumText">
+            <h3>Song For My Father</h3>
+            <p>Horace Silver</p>
+          </div>
+          <div class="bottomMenuWrapperLeftIcons">
+            <ul>
+              <li><i class="far fa-heart"></i></li>
+              <li><i class="fas fa-laptop"></i></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="bottomMenuWrapperCenter">
+        <div>
+          <ul class="d-flex align-items-center justify-content-center">
+            <li class="bottomMenuWrapperCenterSecondaryIcon">
+              <i class="fas fa-random"></i>
+            </li>
+            <li class="bottomMenuWrapperCenterSecondaryIcon">
+              <i class="fas fa-step-backward"></i>
+            </li>
+            <li class="bottomMenuWrapperCenterPlayIcon">
+              <i class="far fa-play-circle"></i>
+            </li>
+            <li class="bottomMenuWrapperCenterSecondaryIcon">
+              <i class="fas fa-step-forward"></i>
+            </li>
+            <li class="bottomMenuWrapperCenterSecondaryIcon">
+              <i class="fas fa-redo"></i>
+            </li>
+          </ul>
+        </div>
+        <div class="progress progressSong">
+          <div
+            class="progress-bar"
+            role="progressbar"
+            aria-valuenow="50"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+      </div>
+      <div class="bottomMenuWrapperRight d-flex align-items-center">
+        <div>
+          <ul>
+            <li><i class="fas fa-bars"></i></li>
+            <li><i class="fas fa-laptop-code"></i></li>
+            <li class="finalListLi">
+              <div class="d-flex align-items-center">
+                <i class="fas fa-volume-up"></i>
+                  <!-- THIS INPUT THE CONTAINS VOLUME SLIDER-->
+              <input type="range" class="d-lg-block styled-slider slider-progress p-3"/>
+                <!-- <div class="progress progressVolume mb-0 ml-2">
+                  <div
+                    class="progress-bar mb-0"
+                    role="progressbar"
+                    aria-valuenow="50"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div> -->
+                </div>
+              </div>
+            </li>
+          </ul>
+          <i class="fas fa-ellipsis-h bottomMenuWrapperRightBars"></i>
+        </div>
+      </div>
+    </div>
+    <!-- End Downbar Menu -->
+
+    <!-- Mobile Top Menu -->
+    <div
+      class="d-flex justify-content-between mobileTopMenu d-block d-sm-none d-md-none d-lg-none d-xl-none"
+    >
+      <div class="mobileTopMenuLeft">
+        <i class="fas fa-chevron-left"></i>
+      </div>
+      <div class="mobileTopMenuRight">
+        <ul class="mb-0">
+          <li><i class="far fa-heart"></i></li>
+          <li><i class="fas fa-ellipsis-h"></i></li>
+        </ul>
+      </div>
+    </div>
+    <!-- End Mobile Top Menu -->
+
+    <!-- Mobile Bottom Menu -->
+    <div
+      class="d-flex justify-content-between mobileBottomMenu d-block d-sm-none d-md-none d-lg-none d-xl-none"
+    >
+      <div
+        class="BottomMenuSection1 text-center d-flex flex-column align-items-center"
+      >
+        <i class="fas fa-home"></i>
+        <p>Home</p>
+      </div>
+      <div
+        class="BottomMenuSection2 text-center d-flex flex-column align-items-center"
+      >
+        <i class="fas fa-search"></i>
+        <p>Search</p>
+      </div>
+      <div
+        class="BottomMenuSection3 text-center d-flex flex-column align-items-center"
+      >
+        <i class="fas fa-bars"></i>
+        <p>Your Library</p>
+      </div>
+      <div
+        class="BottomMenuSection4 text-center d-flex flex-column align-items-center"
+      >
+        <i class="fab fa-spotify"></i>
+        <p>Premium</p>
+      </div>
+    </div>
+    <!-- End Mobile Bottom Menu -->
+
+    <!-- Content Section -->
+    <div class="contentSection">
+      <div class="container-img-artist">
+        <img
+          class="img-artist"
+          src="assets/queenonline-com-live-1986 - new1.jpg"
+          alt="queen"
+        />
+
+        <p class="text-artist-listener text-muted text-center">
+          33,000,575 MONTHLY LISTENERS
+        </p>
+        <h1 class="text-artist-title text-white">Queen</h1>
+        <div class="btn-place text-center">
+          <button type="button" class="btnArtistPage btn-play">PLAY</button>
+          <button type="button" class="btnArtistPage btn-follow">FOLLOW</button>
+          <button type="button" class="btnArtistPage dots" title="More">
+            <svg
+              role="img"
+              height="32"
+              width="32"
+              viewBox="0 0 32 32"
+              class="Svg-ulyrgf-0 hJgLcF"
+            >
+              <path
+                d="M5.998 13.999A2 2 0 105.999 18 2 2 0 005.998 14zm10.001 0A2 2 0 1016 18 2 2 0 0016 14zm10.001 0A2 2 0 1026.001 18 2 2 0 0026 14z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <nav class="Page-navigation">
+        <ul class="pagination justify-content-center postionUlArtistPage">
+          <li class="active page-item text-center">
+            <a class="page-link" href="#"
+              >OVERVIEW
+              <div class="link-borderBottom"></div
+            ></a>
+          </li>
+          <li class="page-item text-center">
+            <a class="page-link" href="#"
+              ><div class="link-borderBottom"></div>
+              RELATED ARTISTS</a
+            >
+          </li>
+          <li class="page-item text-center">
+            <a class="page-link" href="#"
+              ><div class="link-borderBottom"></div>
+              ABOUT</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <div class="album pl-4">
+        <div class="container">
+          <h2 class="albums-heading mb-3">Albums</h2>
+          <div class="row">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+              <div class="card mb-4">
+                <img
+                  src="https://i.scdn.co/image/ab67616d00001e02e8b066f70c206551210d902b"
+                  alt="Bohemian Rhapsody (The Original Soundtrack)"
+                />
+                <div class="card-body">
+                  <p class="card-text text-center">
+                    Bohemian Rhapsody (The Original Soundtrack)
+                  </p>
+                  <p class="card-text text-center card-artist">Queen</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+              <div class="card mb-4">
+                <img
+                  src="https://i.scdn.co/image/ab67616d00001e02a97714ae03be2b2ff2aa2dbb"
+                  alt="On Air"
+                />
+
+                <div class="card-body">
+                  <p class="card-text text-center">On Air</p>
+                  <p class="card-text text-center card-artist">Queen</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+              <div class="card mb-4">
+                <img
+                  src="https://i.scdn.co/image/ab67616d00001e0282ae0f628e5a39196ac9083b"
+                  alt="A Night At The Odeon"
+                />
+                <div class="card-body">
+                  <p class="card-text text-center">A Night At The Odeon</p>
+                  <p class="card-text text-center card-artist">Queen</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+              <div class="card mb-4">
+                <img
+                  src="https://i.scdn.co/image/ab67616d00001e022f3e43381deaf6505880b1f6"
+                  alt="Live At The Rainbow"
+                />
+                <div class="card-body">
+                  <p class="card-text text-center">Live At The Rainbow</p>
+                  <p class="card-text text-center card-artist">Queen</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+              <div class="card mb-4">
+                <img
+                  src="https://i.scdn.co/image/ab67616d00001e0256844a498ad89bd43d4756a7"
+                  alt="Live At The Rainbow (Deluxe)"
+                />
+                <div class="card-body">
+                  <p class="card-text text-center">
+                    Live At The Rainbow (Deluxe)
+                  </p>
+                  <p class="card-text text-center card-artist">Queen</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+              <div class="card mb-4">
+                <img
+                  src="https://i.scdn.co/image/ab67616d00001e021092d27726b965d04ef427e0"
+                  alt="Hungarian Rhapsody (Live In Budapest / 1986)"
+                />
+                <div class="card-body">
+                  <p class="card-text text-center">
+                    Hungarian Rhapsody (Live In Budapest / 1986)
+                  </p>
+                  <p class="card-text text-center card-artist">Queen</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+              <div class="card mb-4">
+                <img
+                  src="https://i.scdn.co/image/ab67616d00001e02f289327ca505f7acc3a3a72f"
+                  alt="The Cosmos Rocks"
+                />
+                <div class="card-body">
+                  <p class="card-text text-center">The Cosmos Rocks</p>
+                  <p class="card-text text-center card-artist">Queen</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+              <div class="card mb-4">
+                <img
+                  src="https://i.scdn.co/image/ab67616d00001e02efd5124f95524b047ff71be8"
+                  alt="Queen Rock Montreal"
+                />
+                <div class="card-body">
+                  <p class="card-text text-center">Queen Rock Montreal</p>
+                  <p class="card-text text-center card-artist">Queen</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+              <div class="card mb-4">
+                <img
+                  src="https://i.scdn.co/image/ab67616d00001e025cb4de900d6b4d66a778e538"
+                  alt="Return Of The Champions"
+                />
+                <div class="card-body">
+                  <p class="card-text text-center">Return Of The Champions</p>
+                  <p class="card-text text-center card-artist">Queen</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+              <div class="card mb-4">
+                <img
+                  src="https://i.scdn.co/image/ab67616d00001e0224c4c0836bde217042af8dbf"
+                  alt="On Fire: Live At The Bowl"
+                />
+
+                <div class="card-body">
+                  <p class="card-text text-center">On Fire: Live At The Bowl</p>
+                  <p class="card-text text-center card-artist">Queen</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+              <div class="card mb-4">
+                <img
+                  src="https://i.scdn.co/image/ab67616d00001e025f8c271d01157fdb59478f14"
+                  alt="Made In Heaven (2011 Remaster)"
+                />
+                <div class="card-body">
+                  <p class="card-text text-center">
+                    Made In Heaven (2011 Remaster)
+                  </p>
+                  <p class="card-text text-center card-artist">Queen</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+              <div class="card mb-4">
+                <img
+                  src="https://i.scdn.co/image/ab67616d00001e0295b06b0399c5f32d804dbb89"
+                  alt="Made In Heaven (Deluxe Edition 2011 Remaster)"
+                />
+                <div class="card-body">
+                  <p class="card-text text-center">
+                    Made In Heaven (Deluxe Edition 2011 Remaster)
+                  </p>
+                  <p class="card-text text-center card-artist">Queen</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Content Section -->
+
+    <!-- Content Section -->
+
+    <!-- End Content Section -->
+
+    <!--Local Storage-->
+    <script>
+      const signUpEmail = document.getElementById("signUpEmail");
+      const signUpPassword = document.getElementById("signUpPassword");
+      const signUpButton = document.getElementById("signUpButton");
+      const loginEmail = document.getElementById("loginEmail");
+      const loginPassword = document.getElementById("loginPassword");
+      const loginButton = document.getElementById("loginButton");
+      const logOutButton = document.getElementById("logOutButton");
+
+      const loggedInBottomMenu = document.getElementById("loggedInBottomMenu");
+      const loggedOutBottomMenu = document.getElementById(
+        "loggedOutBottomMenu"
+      );
+
+      window.onload = function () {
+        let loggedIn = localStorage.getItem("LOGGED_IN");
+        displaySidebarFooter();
+      };
+
+      function logInUser() {
+        localStorage.setItem("LOGGED_IN", true);
+        displaySidebarFooter();
+      }
+
+      function logOutUser() {
+        localStorage.clear();
+        location.reload();
+      }
+
+      function displaySidebarFooter() {
+        let loggedIn = localStorage.getItem("LOGGED_IN");
+        if (loggedIn) {
+          loggedInBottomMenu.classList.remove("d-none");
+          loggedOutBottomMenu.classList.add("d-none");
+        } else {
+          loggedOutBottomMenu.classList.remove("d-none");
+          loggedInBottomMenu.classList.add("d-none");
+        }
+      }
+
+      signUpButton.onclick = logInUser;
+      logOutButton.onclick = logOutUser;
+
+      for (let e of document.querySelectorAll('input[type="range"].slider-progress')) {
+          e.style.setProperty('--value', e.value);
+          e.style.setProperty('--min', e.min == '' ? '0' : e.min);
+          e.style.setProperty('--max', e.max == '' ? '100' : e.max);
+          e.addEventListener('input', () => e.style.setProperty('--value', e.value));
+          console.log( e.addEventListener('input', () => e.style.setProperty('--value', e.value)))
+      }
+    </script>
+    <!--End Local Storage-->
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      window.jQuery ||
+        document.write(
+          '<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>'
+        );
+    </script>
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <!--Bootstrap-->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--Fontawesome-->
+    <script
+      src="https://kit.fontawesome.com/cf8ccbb757.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
